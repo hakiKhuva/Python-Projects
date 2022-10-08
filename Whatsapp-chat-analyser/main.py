@@ -71,7 +71,8 @@ df['urlcount'] = df.Message.apply(lambda x: regex.findall(URLPATTERN, x)).str.le
 links = np.sum(df.urlcount)
 total_messages = df.shape[0]
 media_messages = df[df["Message"]=='<Media omitted>'].shape[0]
-print("Chats between Aman and Sapna")
+l = list(input("Enter names of sender and receiver").trim().split())
+print("Chats between %s and %s"%l[0]%l[1])
 print("Total Messages: ", total_messages)
 print("Number of Media Shared: ", media_messages)
 print("Number of Emojis Shared", emojis)
@@ -82,7 +83,7 @@ messages_df['Letter_Count'] = messages_df['Message'].apply(lambda s : len(s))
 messages_df['Word_Count'] = messages_df['Message'].apply(lambda s : len(s.split(' ')))
 messages_df["MessageCount"]=1
 
-l = ["Aman Kharwal", "Sapna"]
+
 for i in range(len(l)):
   # Filtering out messages of particular user
   req_df= messages_df[messages_df["Author"] == l[i]]
@@ -127,7 +128,6 @@ plt.figure( figsize=(10,5))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
 plt.show()
-l = ["Aman", "Akash"]
 for i in range(len(l)):
   dummy_df = messages_df[messages_df['Author'] == l[i]]
   text = " ".join(review for review in dummy_df.Message)
