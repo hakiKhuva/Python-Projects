@@ -286,12 +286,14 @@ class Bill_App:
 
 #=========billArea=================================================
     def bill_area(self):
-        if self.c_name.get() == " " or self.c_phone.get() == " ":
+        if self.c_name.get().strip() == "" or self.c_phone.get().strip() == "":
             messagebox.showerror("Error", "Customer Details Are Must")
+            return
         elif self.medical_price.get() == "Rs. 0.0" and self.grocery_price.get() == "Rs. 0.0" and self.cold_drinks_price.get()=="Rs. 0.0":
             messagebox.showerror("Error", "No Product Purchased")
-        else:
-            self.welcome_bill()
+            return
+        
+        self.welcome_bill()
     # ============medical===========================
         if self.sanitizer.get() != 0:
             self.txtarea.insert(END, f"\n Sanitizer\t\t{self.sanitizer.get()}\t\t{self.m_s_p}")
@@ -363,7 +365,7 @@ class Bill_App:
             if i.split('.')[0] == self.search_bill.get():
                 f1 = open(f"bills/{i}", "r")
                 self.txtarea.delete("1.0", END)
-                for d in f1:
+                for d in f1.readlines():
                     self.txtarea.insert(END, d)
                     f1.close()
                 present = "yes"
