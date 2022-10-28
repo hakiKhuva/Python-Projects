@@ -22,11 +22,11 @@ class Library:
 
 class Student: 
     def requestBook(self):
-        self.book = input("Enter the name of the book you want to borrow: ")
+        self.book = input("Enter the name of the book you want to borrow: ").strip()
         return self.book
 
     def returnBook(self):
-        self.book = input("Enter the name of the book you want to return: ")
+        self.book = input("Enter the name of the book you want to return: ").strip()
         return self.book
          
 
@@ -44,7 +44,7 @@ if __name__ == "__main__":
         4. Exit the Library
         '''
         print(welcomeMsg)
-        a = int(input("Enter a choice: "))
+        a = int(input("Enter a choice: ").strip())
         if a == 1:
             centraLibrary.displayAvailableBooks()
         elif a == 2:
